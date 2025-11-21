@@ -9,13 +9,11 @@ function App() {
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
-    // Check if token exists in URL params (from frontend login redirect)
     const params = new URLSearchParams(window.location.search);
     const tokenFromUrl = params.get("token");
 
     if (tokenFromUrl) {
       localStorage.setItem("token", tokenFromUrl);
-      // Clean URL - remove token from address bar
       window.history.replaceState({}, "", "/dashboard");
     }
     
@@ -23,7 +21,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    // Listen for logout event from frontend app
     const handleFrontendLogout = () => {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
